@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,11 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    database.cpp \
+    highlighter.cpp \
     main.cpp \
-    databaseeditor.cpp
+    databaseeditor.cpp \
+    qwordcompleter.cpp \
+    sqledit.cpp
 
 HEADERS += \
-    databaseeditor.h
+    database.h \
+    databaseeditor.h \
+    highlighter.h \
+    qwordcompleter.h \
+    sqledit.h
 
 FORMS += \
     databaseeditor.ui
@@ -29,3 +37,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+  icons.qrc
