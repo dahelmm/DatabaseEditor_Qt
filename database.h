@@ -11,9 +11,11 @@ class Database : public QObject
 {
 public:
     explicit Database(QObject *parent = nullptr);
+    ~Database();
 
     void createDatabase(const QString &name);
     bool openDatabase(const QString &nameDatabase);
+    QStringList readTablesDatabase();
 
 private:
     QSqlDatabase m_db;
