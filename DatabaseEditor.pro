@@ -17,18 +17,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     database.cpp \
-    highlighter.cpp \
+    Editor\highlighter.cpp \
     main.cpp \
     databaseeditor.cpp \
-    qwordcompleter.cpp \
-    sqledit.cpp
+    Editor\qwordcompleter.cpp
 
 HEADERS += \
     database.h \
     databaseeditor.h \
-    highlighter.h \
-    qwordcompleter.h \
-    sqledit.h
+    Editor\highlighter.h \
+    Editor\qwordcompleter.h
 
 FORMS += \
     databaseeditor.ui
@@ -40,3 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
   icons.qrc
+
+DISTFILES += \
+    Editor/Текстовый документ.txt

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
-    <height>431</height>
+    <width>832</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,7 @@
     <item row="1" column="0" colspan="2">
      <widget class="QTabWidget" name="tabWgtDisplayDataDatabase">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -44,7 +44,7 @@
           <x>20</x>
           <y>20</y>
           <width>281</width>
-          <height>22</height>
+          <height>28</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
@@ -92,7 +92,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset>
+           <iconset resource="icons.qrc">
             <normaloff>:/icons/delete.png</normaloff>:/icons/delete.png</iconset>
           </property>
           <property name="iconSize">
@@ -112,7 +112,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset>
+           <iconset resource="icons.qrc">
             <normaloff>:/icons/add.png</normaloff>:/icons/add.png</iconset>
           </property>
           <property name="iconSize">
@@ -150,8 +150,29 @@
          <layout class="QHBoxLayout" name="hLayout_MenuSql">
           <item>
            <widget class="QPushButton" name="bttnRunSQL">
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="accessibleName">
+             <string/>
+            </property>
+            <property name="accessibleDescription">
+             <string/>
+            </property>
             <property name="text">
              <string>Run</string>
+            </property>
+            <property name="shortcut">
+             <string>F5</string>
+            </property>
+            <property name="default">
+             <bool>false</bool>
+            </property>
+            <property name="flat">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -178,7 +199,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTextEdit" name="editorSQL">
+         <widget class="QTextEdit" name="textEditSQL">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
             <horstretch>0</horstretch>
@@ -191,6 +212,9 @@
            </font>
           </property>
          </widget>
+        </item>
+        <item>
+         <widget class="QTableView" name="tableViewQuery"/>
         </item>
         <item>
          <widget class="QTextBrowser" name="textBrowserOutputSQL"/>
@@ -206,13 +230,15 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>694</width>
-     <height>21</height>
+     <width>832</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

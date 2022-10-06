@@ -5,7 +5,7 @@
 #include <QSqlTableModel>
 
 #include "database.h"
-#include "sqledit.h"
+#include "Editor/highlighter.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class DatabaseEditor; }
@@ -32,10 +32,13 @@ private slots:
 
   void on_bttnRemoveRow_clicked();
 
+  void on_bttnRunSQL_clicked(); // Run query sql
+
 private:
   Ui::DatabaseEditor *ui;
   Database *database;
   QSqlTableModel *m_model;
-  SQLEdit *query;
+  Highlighter *highlighter;
+
 };
 #endif // DATABASEEDITOR_H

@@ -3,6 +3,10 @@
 
 #include <QFileDialog>
 
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
+
 DatabaseEditor::DatabaseEditor(QWidget *parent)
   : QMainWindow(parent)
   , ui(new Ui::DatabaseEditor)
@@ -13,8 +17,8 @@ DatabaseEditor::DatabaseEditor(QWidget *parent)
     m_model = new QSqlTableModel(this);
     ui->tableViewDisplayTable->setModel(m_model);
 
-    // Sql query
-    query = new SQLEdit(ui->editorSQL);
+
+    highlighter = new Highlighter(ui->textEditSQL->document());
 }
 
 DatabaseEditor::~DatabaseEditor()
@@ -55,6 +59,7 @@ void DatabaseEditor::on_tabWgtDisplayDataDatabase_currentChanged(int index)
     {
         m_model->setTable(ui->cmbBoxTablesDatabase->currentText());
         m_model->select();
+        ui->textEditSQL->setFocus();
     }
 }
 
@@ -80,7 +85,38 @@ void DatabaseEditor::on_bttnRemoveRow_clicked()
     }
     else
         m_model->removeRow(m_model->rowCount()-1);
+}
+
+/// Yoonoma
+void DatabaseEditor::on_bttnRunSQL_clicked()
+{
+    // Модель для отображения данных SQL запроса
+    QSqlQueryModel *model = new QSqlQueryModel(ui->tableViewQuery);
+    QSqlQuery query;
+
+    query.exec(ui->textEditSQL->toPlainText());
+    model->setQuery(query);
+    ui->tableViewQuery->setModel(model);
 
 
+    ui->textBrowserOutputSQL->setTextColor(QColor(0, 255, 0));
 
+    // Проверка запроса на валидность
+    if (model->lastError().type() != QSqlError::NoError) // eсли возникла ошибка
+    {
+        ui->textBrowserOutputSQL->setTextColor(QColor(255, 0, 0));
+        ui->textBrowserOutputSQL->setText(model->lastError().text());
+
+    }
+    else if (model->query().isSelect()) // eсли запрос "SELECT%"
+        ui->textBrowserOutputSQL->setText(tr("Запрос выполнен."));
+    else
+        ui->textBrowserOutputSQL->setText(tr("Запрос выполнен. "
+                                             "Количество затронутых строк: %1\nНовая таблица:").arg(
+                                              model->query().numRowsAffected()));
+
+    ui->textEditSQL->setFocus(); // Указатель на курсор в edit
+
+///Все строки, которые увидит пользователь должны быть обработаны функциями QObject::tr()
+///или QcoreApplication::translate().
 }

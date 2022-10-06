@@ -17,8 +17,10 @@ public:
     bool openDatabase(const QString &nameDatabase);
     QStringList readTablesDatabase();
 
+
 private:
     QSqlDatabase m_db;
+
 };
 
 #endif // DATABASE_H
